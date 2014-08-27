@@ -1,39 +1,6 @@
 
-<!DOCTYPE html>
-<html>
-<head>
-  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-  <title>Google Maps Routing Options - jsFiddle demo</title>
-  
-  <!--
-  <link rel="stylesheet" type="text/css" href="/css/normalize.css">
-  <link rel="stylesheet" type="text/css" href="/css/result-light.css">
-  -->
-  
-  <script type='text/javascript' src='http://code.jquery.com/jquery-1.7.1.js'></script>
-  <!--<script type='text/javascript' src="http://maps.google.com/maps/api/js?sensor=false&.js"></script>-->
-  <script src="https://maps.googleapis.com/maps/api/js?libraries=places,visualization&v=3.exp"></script>
-  <script type='text/javascript' src='http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.0.3/angular.min.js'></script>
-    
-  
-  <style type='text/css'>
-    #map_canvas{
-    width: 60%;
-    height: 400px;
-    border: 1px solid black;
-    float: left;
-}
-#directions {
-    width: 38%;
-    float: right; 
-}
-body {
-    font-size: 12px;
-}
-  </style>
-  
 
-
+  
 <script type='text/javascript'>//<![CDATA[ 
 
     function dayTripper($scope, $http, $route) {
@@ -122,34 +89,7 @@ body {
             }, $scope.apiDelay );
         }
 
-        /*
-        $scope.getPlaceDetails = function(place_id) {  
-
-            var request = {
-                placeId: place_id
-            };
-
-            //service = new google.maps.places.PlacesService(map);
-            // Setting delay to prevent OVER_QUERY_LIMIT error
-            setTimeout( function() {
-                  $scope.placesService.getDetails(request, callback);
-              }, 7500 );
-            
-
-            function callback(place, status) {
-                if (status == google.maps.places.PlacesServiceStatus.OK) {
-                    //createMarker(place);
-
-                    $scope.placeDetails.push(place);
-                    $scope.$apply(); // necessary to update list
-                }
-                else {
-                  console.log("Place Details ERROR:");
-                  console.log(status);
-                }
-            }
-        }
-        */
+        
 
         $scope.getPlaceDetails = function(place_id) {  
 
@@ -218,57 +158,33 @@ body {
         $scope.init();
     }
 
-    /*
-    $(function(){
-        var directionsDisplay = new google.maps.DirectionsRenderer({ draggable: true });
-        var directionsService = new google.maps.DirectionsService();
-        var map;
-
-        $(window).load(function() {
-            var myOptions = {
-                zoom: 10,
-                mapTypeId: google.maps.MapTypeId.ROADMAP,
-                center: new google.maps.LatLng(35.270, -80.837)
-            };
-            map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
-            directionsDisplay.setMap(map);
-            directionsDisplay.setPanel(document.getElementById("directions"));
-            
-            //$("#routeGo").on("click", function() { calcRoute(); });
-            $("#routeClear").on("click", function() { directionsDisplay.setDirections({ routes: [] }); });
-            
-        });
-
-        function calcRoute() {
-            var request = {
-                origin: $("#routeTo").val(),
-                destination: $("#routeFrom").val(),
-                travelMode: google.maps.TravelMode[$("#routeMode").val()]
-            };
-
-            directionsService.route(request, function(response, status) {
-                if (status == google.maps.DirectionsStatus.OK) {
-                    directionsDisplay.setDirections(response);
-                }
-            });
-        }
-        
-    });
-    */
-
+    
 //]]></script>
-
-
-</head>
-<body>
 
     <div ng-app ng-controller="dayTripper">
         
+        <!--
         <input type="text" id="routeFrom" name="routeFrom" ng-model="routeFrom" placeholder="Los Angeles, CA" />
         <label for="routeFrom">From</label><br />
 
         <input type="text" id="routeTo" name="routeTo" ng-model="routeTo" placeholder="Madison, WI" />
         <label for="routeTo">To</label><br />
+-->
+
+        <!--INPUT---FORM-->
+		<div class="col-sm-4 col-sm-offset-0">
+		  <%= form_for @trip do |f| %>
+
+		  	
+		    <%= f.text_field :origin, placeholder: "origin", value: "{{routeFrom}}", :'ng-model' => 'routeFrom' , class: 'form-control' %><br/>
+		    <%= f.text_field :destination, placeholder: "destination", value: "{{routeTo}}", :'ng-model' => 'routeTo', class: 'form-control' %><br/>
+		    
+
+		    <%= f.submit "Save Trip", class: 'btn btn-primary' %>
+
+		  <% end %>
+		</div>  
+
 
         <div class="textcenter">
             <button id="routeGo" ng-click="calcRoute()">Route</button>
@@ -291,6 +207,4 @@ body {
         
     </div>
   
-</body>
-</html>
 
