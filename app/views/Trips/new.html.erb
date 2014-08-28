@@ -12,10 +12,13 @@
         $scope.directionsDisplay = new google.maps.DirectionsRenderer({ draggable: true });
         $scope.directionsService = new google.maps.DirectionsService();
         $scope.placeDetails = new Array();
-        $scope.numPointsAlongRoute = 10;
-        $scope.numPlacesPerPoint = 2;
+        $scope.numPointsAlongRoute = 20;
+        $scope.numPlacesPerPoint = 4;
         $scope.apiDelay = 1000;
         $scope.placesSearch = "food";
+
+        $scope.markers = [];
+        $scope.bounds = new google.maps.LatLngBounds ();
         
         //$scope.map;
         //$scope.routeFrom = "Los Angeles, CA";
@@ -33,9 +36,30 @@
             $scope.placesService = new google.maps.places.PlacesService($scope.map);
             $scope.directionsDisplay.setMap($scope.map);
             $scope.directionsDisplay.setPanel(document.getElementById("directions"));
+
+            $scope.oauth = OAuth({
+                consumer: {
+                    public: 'eVPyWoCRqdWAxPbWF-1rNA',
+                    secret: 'ah4MRUz9POQxJg8msIx_KiCuZBg'
+                },
+                /*
+                token: {
+                    public: 'GOBtpNRQJVdUH6cJNXjJT8iOnrhbWDtJ',
+                    secret: 'lJFK127gbHwz2jud0Tq0ENy5S7I'
+                },
+                */
+                signature_method: 'HMAC-SHA1'
+            });
+
+            $scope.token = {
+                public: 'GOBtpNRQJVdUH6cJNXjJT8iOnrhbWDtJ',
+                secret: 'lJFK127gbHwz2jud0Tq0ENy5S7I'
+            };
         }
 
         $scope.calcRoute = function() {
+
+            //$scope.getYelp('Food');
 
             var request = {
                 origin: $scope.routeTo,
@@ -53,7 +77,8 @@
                     var selectedPoints = $scope.cherryPickPoints(allPoints, $scope.numPointsAlongRoute);
 
                     for (var i = 0; i < selectedPoints.length; i++) {
-                        $scope.findPlaces(selectedPoints[i].B, selectedPoints[i].k);
+                        //$scope.findPlaces(selectedPoints[i].B, selectedPoints[i].k);
+                        $scope.getYelp($scope.placesSearch, selectedPoints[i].B, selectedPoints[i].k);
                     }
                 }
             });
@@ -61,13 +86,164 @@
             
         }
 
+        /*
+        $scope.getYelp = function(term) {
+            console.log("In getYelp");
+
+            var auth = { 
+                consumerKey: "eVPyWoCRqdWAxPbWF-1rNA", 
+                consumerSecret: "ah4MRUz9POQxJg8msIx_KiCuZBg",
+                accessToken: "GOBtpNRQJVdUH6cJNXjJT8iOnrhbWDtJ",
+                accessTokenSecret: "lJFK127gbHwz2jud0Tq0ENy5S7I",
+              };
+
+              var terms = term;
+              var near = 'San+Francisco';
+
+              var accessor = {
+                consumerSecret: auth.consumerSecret,
+                tokenSecret: auth.accessTokenSecret
+              };
+
+              var parameters = [];
+              parameters.push(['term', terms]);
+              parameters.push(['location', near]);
+              parameters.push(['oauth_consumer_key', auth.consumerKey]);
+              parameters.push(['oauth_consumer_secret', auth.consumerSecret]);
+              parameters.push(['oauth_token', auth.accessToken]);
+
+              var message = { 
+                'action': 'http://api.yelp.com/v2/search',
+                'method': 'GET',
+                'parameters': parameters 
+              };
+
+              OAuth.setTimestampAndNonce(message);  
+              OAuth.SignatureMethod.sign(message, accessor);
+
+              var parameterMap = OAuth.getParameterMap(message.parameters);
+              parameterMap.oauth_signature = OAuth.percentEncode(parameterMap.oauth_signature)
+
+              var url = OAuth.addToURL(message.action,parameterMap);
+              var response = UrlFetchApp.fetch(url).getContentText();
+
+              console.log("Yelp Response:");
+              console.log(response);
+
+              var responseObject = Utilities.jsonParse(response);
+        }
+        */
+
+        //function to get data from YELP
+        $scope.getYelp = function(term, lat, lng)
+        {
+            console.log("In getYelp()");
+
+            /*
+            bounds = new google.maps.LatLngBounds();
+            var request_data = {
+                url: 'http://api.yelp.com/v1/search?term=food&location=San+Francisco',
+                method: 'POST',
+                data: {
+                    status: 'Hello Ladies + Gentlemen, a signed OAuth request!'
+                }
+            };
+
+            $.ajax({
+                url: request_data.url,
+                dataType: 'jsonp',
+                type: request_data.method,
+                data: $scope.oauth.authorize(request_data, $scope.token)
+            }).done(function(data) {
+                //process your data here
+                console.log("Yelp Response");
+                console.log(data);
+
+                $.each(data.businesses, function(i,item){
+                    trace(item);
+                    infowindowcontent = '<strong>'+item.name+'</strong><br>';
+                    infowindowcontent += '<img src="'+item.photo_url+'"><br>';
+                    infowindowcontent += '<a href="'+item.url+'" target="_blank">see it on yelp</a>';
+                    
+                    //yoh.createYelpMarker(i,item.latitude,item.longitude,item.name, infowindowcontent);
+                }); 
+            });
+            */
+
+            $.getJSON('http://api.yelp.com/business_review_search?lat='+lng+'&long='+lat+'&limit=20&ywsid=ynoYeq0HNwWfPKFRqK-5qg&term='+term+'&callback=?',
+                function(data)
+                {
+                    console.log("Yelp Response");
+                    console.log(data);
+
+                    $scope.placeDetails.push(data.businesses[0]);
+                    $scope.createPlacesMarker(data.businesses[0].latitude, data.businesses[0].longitude, data.businesses[0].name);
+                    $scope.$apply(); // necessary to update list
+
+                    /*
+                    $.each(data.businesses, function(i,item){
+                        trace(item);
+                        infowindowcontent = '<strong>'+item.name+'</strong><br>';
+                        infowindowcontent += '<img src="'+item.photo_url+'"><br>';
+                        infowindowcontent += '<a href="'+item.url+'" target="_blank">see it on yelp</a>';
+
+                        
+                        //yoh.createYelpMarker(i,item.latitude,item.longitude,item.name, infowindowcontent);
+                    }); 
+                    */                        
+                }
+            );
+            
+        }
+        
+
+
+
+        //Function to create yelp marker
+        $scope.createPlacesMarker = function(latitude,longitude,title)
+        {
+            var markerLatLng = new google.maps.LatLng(latitude,longitude);  
+            
+            //extent bounds for each stop and adjust map to fit to it
+            
+            //$scope.bounds.extend(markerLatLng);
+            //$scope.map.fitBounds($scope.bounds);
+            
+            new google.maps.Marker({
+                position: markerLatLng,
+                map: $scope.map,
+                title: title,
+                icon: 'http://yohman.bol.ucla.edu/images/yelp.png'
+            });
+
+            //$scope.directionsDisplay.setMap($scope.map);
+
+            /*
+            $scope.markers.push(new google.maps.Marker({
+                position: markerLatLng,
+                map: $scope.map,
+                title: title,
+                icon: 'http://yohman.bol.ucla.edu/images/yelp.png'
+            }));
+            */
+        
+            //add an onclick event
+            /*
+            google.maps.event.addListener(yelp[i], 'click', function() {
+                infowindow.setContent(infowindowcontent);
+                infowindow.open(map,yelp[i]);
+            });
+            */
+        }
+
         $scope.findPlaces = function(lat, lng) {
             var coord = new google.maps.LatLng(lng, lat);
 
             var request = {
               location: coord,
-              radius: '500000',
-              keyword: $scope.placesSearch
+              radius: '5000',
+              //keyword: $scope.placesSearch
+              types: ['food']
             };
 
             setTimeout( function() {
@@ -103,6 +279,10 @@
                   $scope.placesService.getDetails(request, function(place, status) {
                       if (status == google.maps.places.PlacesServiceStatus.OK) {
                             //createMarker(place);
+                            console.log("Place Response:");
+                            console.log(place);
+                            $scope.createPlacesMarker(place.geometry.location.k, place.geometry.location.B, place.name);
+
 
                             $scope.placeDetails.push(place);
                             $scope.$apply(); // necessary to update list
@@ -156,6 +336,8 @@
         }
 
         $scope.init();
+
+        //google.maps.event.addDomListener(window, 'load', initialize);
     }
 
     
@@ -199,7 +381,7 @@
           <ul>
             <li ng-repeat="detail in placeDetails">
               <h4>{{detail.name}}</h4>
-              {{detail.formatted_address}}
+              <!--{{detail.formatted_address}}-->
             </li>
           </ul>
         </div>

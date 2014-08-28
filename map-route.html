@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -49,6 +48,9 @@ body {
         $scope.numPlacesPerPoint = 2;
         $scope.apiDelay = 1000;
         $scope.placesSearch = "food";
+
+        //array to hold yelp markers
+        var yelp = [];
         
         //$scope.map;
         //$scope.routeFrom = "Los Angeles, CA";
@@ -69,6 +71,8 @@ body {
         }
 
         $scope.calcRoute = function() {
+
+            $scope.getYelp('Food');
 
             var request = {
                 origin: $scope.routeTo,
@@ -93,6 +97,32 @@ body {
 
             
         }
+
+
+        //function to get data from YELP
+        $scope.getYelp = function(term)
+        {
+            console.log("In getYelp()");
+
+            bounds = new google.maps.LatLngBounds();
+            $.getJSON('http://api.yelp.com/business_review_search?lat='+$scope.map.getCenter().lat()+'&long='+$scope.map.getCenter().lng()+'&limit=20&ywsid=ynoYeq0HNwWfPKFRqK-5qg&term='+term+'&callback=?',
+                function(data)
+                {
+                    console.log("Yelp Response");
+                    console.log(data);
+
+                    $.each(data.businesses, function(i,item){
+                        trace(item);
+                        infowindowcontent = '<strong>'+item.name+'</strong><br>';
+                        infowindowcontent += '<img src="'+item.photo_url+'"><br>';
+                        infowindowcontent += '<a href="'+item.url+'" target="_blank">see it on yelp</a>';
+                        
+                        //yoh.createYelpMarker(i,item.latitude,item.longitude,item.name, infowindowcontent);
+                    });                         
+                }
+            );
+        }
+
 
         $scope.findPlaces = function(lat, lng) {
             var coord = new google.maps.LatLng(lng, lat);
@@ -293,4 +323,3 @@ body {
   
 </body>
 </html>
-
