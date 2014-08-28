@@ -37,24 +37,7 @@
             $scope.directionsDisplay.setMap($scope.map);
             $scope.directionsDisplay.setPanel(document.getElementById("directions"));
 
-            $scope.oauth = OAuth({
-                consumer: {
-                    public: 'eVPyWoCRqdWAxPbWF-1rNA',
-                    secret: 'ah4MRUz9POQxJg8msIx_KiCuZBg'
-                },
-                /*
-                token: {
-                    public: 'GOBtpNRQJVdUH6cJNXjJT8iOnrhbWDtJ',
-                    secret: 'lJFK127gbHwz2jud0Tq0ENy5S7I'
-                },
-                */
-                signature_method: 'HMAC-SHA1'
-            });
-
-            $scope.token = {
-                public: 'GOBtpNRQJVdUH6cJNXjJT8iOnrhbWDtJ',
-                secret: 'lJFK127gbHwz2jud0Tq0ENy5S7I'
-            };
+            //secret token
         }
 
         $scope.calcRoute = function() {
