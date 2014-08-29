@@ -8811,3 +8811,100 @@ Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-08-29 15:16:11 
 
 
 Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-08-29 15:16:11 -0700
+
+
+Started GET "/trips/new" for 127.0.0.1 at 2014-08-29 16:30:12 -0700
+  [1m[36mActiveRecord::SchemaMigration Load (1.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by TripsController#new as HTML
+  Rendered trips/new.html.erb within layouts/application (11.6ms)
+Completed 200 OK in 337ms (Views: 322.8ms | ActiveRecord: 2.8ms)
+
+
+Started GET "/assets/users.css?body=1" for 127.0.0.1 at 2014-08-29 16:30:12 -0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-08-29 16:30:12 -0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-08-29 16:30:12 -0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-08-29 16:30:12 -0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-08-29 16:30:12 -0700
+
+
+Started GET "/assets/oauth-1.0a.js?body=1" for 127.0.0.1 at 2014-08-29 16:30:12 -0700
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2014-08-29 16:30:12 -0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-08-29 16:30:12 -0700
+
+
+Started GET "/trips/new" for 127.0.0.1 at 2014-08-29 16:31:55 -0700
+Processing by TripsController#new as HTML
+  Rendered trips/new.html.erb within layouts/application (1.3ms)
+Completed 200 OK in 22ms (Views: 20.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/users.css?body=1" for 127.0.0.1 at 2014-08-29 16:31:55 -0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-08-29 16:31:55 -0700
+
+
+Started GET "/assets/oauth-1.0a.js?body=1" for 127.0.0.1 at 2014-08-29 16:31:55 -0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-08-29 16:31:55 -0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-08-29 16:31:55 -0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-08-29 16:31:55 -0700
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2014-08-29 16:31:55 -0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-08-29 16:31:55 -0700
+
+
+Started GET "/trips/new" for 127.0.0.1 at 2014-08-29 16:32:42 -0700
+Processing by TripsController#new as HTML
+  Rendered trips/new.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 13ms (Views: 12.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/users.css?body=1" for 127.0.0.1 at 2014-08-29 16:32:42 -0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-08-29 16:32:42 -0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-08-29 16:32:42 -0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-08-29 16:32:42 -0700
+
+
+Started GET "/assets/oauth-1.0a.js?body=1" for 127.0.0.1 at 2014-08-29 16:32:42 -0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-08-29 16:32:42 -0700
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2014-08-29 16:32:42 -0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-08-29 16:32:42 -0700
+
+
+Started GET "/assets/bootstrap" for 127.0.0.1 at 2014-08-29 16:32:42 -0700
+
+
+Started GET "/assets/marker.jpg" for 127.0.0.1 at 2014-08-29 16:33:28 -0700

@@ -29,6 +29,12 @@ gem 'spring',        group: :development
 group :development, :test do
 	gem "rspec-rails", '2.14.2'
 end
+# Bootstraping (next 2 gems)
+gem 'bootstrap-sass'
+
+group :production do
+  gem 'rails_12factor'
+end
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

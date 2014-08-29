@@ -13,9 +13,10 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
-
-
 //= require_tree .
+
+// require bootstrap.min
+
 
 
 
@@ -149,7 +150,7 @@
                 position: markerLatLng,
                 map: $scope.map,
                 title: business.name,
-                icon: 'http://yohman.bol.ucla.edu/images/yelp.png'
+                icon: '/assets/marker.jpg'
             });
 
 
