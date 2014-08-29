@@ -8783,3 +8783,31 @@ Started GET "/assets/oauth-1.0a.js?body=1" for 127.0.0.1 at 2014-08-29 14:49:53 
 
 
 Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-08-29 14:49:53 -0700
+
+
+Started GET "/trips/new" for 127.0.0.1 at 2014-08-29 15:16:10 -0700
+  [1m[36mActiveRecord::SchemaMigration Load (2.3ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by TripsController#new as HTML
+  Rendered trips/new.html.erb within layouts/application (18.5ms)
+Completed 200 OK in 505ms (Views: 489.1ms | ActiveRecord: 2.2ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-08-29 15:16:10 -0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-08-29 15:16:10 -0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-08-29 15:16:11 -0700
+
+
+Started GET "/assets/oauth-1.0a.js?body=1" for 127.0.0.1 at 2014-08-29 15:16:11 -0700
+
+
+Started GET "/assets/angular-mocks.js?body=1" for 127.0.0.1 at 2014-08-29 15:16:11 -0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-08-29 15:16:11 -0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-08-29 15:16:11 -0700

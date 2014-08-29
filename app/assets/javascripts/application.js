@@ -154,8 +154,8 @@
 
 
             //add an onclick event
-
             google.maps.event.addListener(marker,'click', function() {
+                
                 // infowindow.setContent(infowindowcontent);
                 infowindow.open($scope.map, marker);
             });
