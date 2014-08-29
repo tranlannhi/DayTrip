@@ -13,3 +13,19 @@
  *= require_tree .
  *= require_self
  */
+
+
+#map_canvas{
+    width: 60%;
+    height: 400px;
+    border: 1px solid black;
+    float: left;
+}
+#directions {
+    width: 38%;
+    float: right;
+}
+body {
+    font-size: 12px;
+}
+
