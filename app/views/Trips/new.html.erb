@@ -15,9 +15,10 @@
         $scope.numPointsAlongRoute = 20;
         $scope.numPlacesPerPoint = 4;
         $scope.apiDelay = 1000;
-        $scope.placesSearch = "food";
+        $scope.placesSearch = "gas_station";
+        $scope.infowindow = new google.maps.InfoWindow();
 
-        $scope.markers = [];
+        // $scope.markers = [];
         $scope.bounds = new google.maps.LatLngBounds ();
         
         //$scope.map;
@@ -37,24 +38,7 @@
             $scope.directionsDisplay.setMap($scope.map);
             $scope.directionsDisplay.setPanel(document.getElementById("directions"));
 
-            $scope.oauth = OAuth({
-                consumer: {
-                    public: 'eVPyWoCRqdWAxPbWF-1rNA',
-                    secret: 'ah4MRUz9POQxJg8msIx_KiCuZBg'
-                },
-                /*
-                token: {
-                    public: 'GOBtpNRQJVdUH6cJNXjJT8iOnrhbWDtJ',
-                    secret: 'lJFK127gbHwz2jud0Tq0ENy5S7I'
-                },
-                */
-                signature_method: 'HMAC-SHA1'
-            });
-
-            $scope.token = {
-                public: 'GOBtpNRQJVdUH6cJNXjJT8iOnrhbWDtJ',
-                secret: 'lJFK127gbHwz2jud0Tq0ENy5S7I'
-            };
+            //secret token
         }
 
         $scope.calcRoute = function() {
@@ -62,8 +46,8 @@
             //$scope.getYelp('Food');
 
             var request = {
-                origin: $scope.routeTo,
-                destination: $scope.routeFrom,
+                origin: $scope.routeFrom,
+                destination: $scope.routeTo,
                 travelMode: google.maps.TravelMode["DRIVING"]
             };
 
@@ -173,24 +157,33 @@
             $.getJSON('http://api.yelp.com/business_review_search?lat='+lng+'&long='+lat+'&limit=20&ywsid=ynoYeq0HNwWfPKFRqK-5qg&term='+term+'&callback=?',
                 function(data)
                 {
+                    
                     console.log("Yelp Response");
                     console.log(data);
 
-                    $scope.placeDetails.push(data.businesses[0]);
-                    $scope.createPlacesMarker(data.businesses[0].latitude, data.businesses[0].longitude, data.businesses[0].name);
-                    $scope.$apply(); // necessary to update list
-
-                    /*
-                    $.each(data.businesses, function(i,item){
-                        trace(item);
-                        infowindowcontent = '<strong>'+item.name+'</strong><br>';
-                        infowindowcontent += '<img src="'+item.photo_url+'"><br>';
-                        infowindowcontent += '<a href="'+item.url+'" target="_blank">see it on yelp</a>';
-
+                    
+                    
+                    
+                    // $.each(data.businesses[0], function(i,item){
                         
-                        //yoh.createYelpMarker(i,item.latitude,item.longitude,item.name, infowindowcontent);
-                    }); 
-                    */                        
+                    //     infowindowcontent = '<strong>'+item.name+'</strong><br>';
+                    //     infowindowcontent += '<img src="'+item.photo_url+'"><br>';
+                    //     infowindowcontent += '<a href="'+item.url+'" target="_blank">see it on yelp</a>';
+                        
+                        //$scope.createPlacesMarker(data.businesses[0].latitude, data.businesses[0].longitude, data.businesses[0].name);
+
+                    if (data.businesses.length > 0) {
+                        $scope.placeDetails.push(data.businesses[0]);
+
+                        $scope.createPlacesMarker(data.businesses[0]);
+
+                        $scope.$apply(); // necessary to update list   
+                    }
+
+                     
+                    //     //yoh.createYelpMarker(i,item.latitude,item.longitude,item.name, infowindowcontent);
+                    // }); 
+                                            
                 }
             );
             
@@ -200,19 +193,32 @@
 
 
         //Function to create yelp marker
-        $scope.createPlacesMarker = function(latitude,longitude,title)
+        $scope.createPlacesMarker = function(business)
         {
-            var markerLatLng = new google.maps.LatLng(latitude,longitude);  
+            console.log("Business:");
+            console.log(business);
+            //var yelpContent = "Hello";
+
+
+            infowindowcontent = '<strong>'+business.name+'</strong><br>';
+            infowindowcontent += '<img src="'+business.photo_url+'"><br>';
+            infowindowcontent += '<a href="'+business.url+'" target="_blank">see it on yelp</a>';
+            infowindowcontent += '<strong>Rating ' + business.avg_rating+'</strong><br>';
+
+            var markerLatLng = new google.maps.LatLng(business.latitude, business.longitude);  
+            var infowindow = new google.maps.InfoWindow({
+                content: infowindowcontent
+            });
             
             //extent bounds for each stop and adjust map to fit to it
             
             //$scope.bounds.extend(markerLatLng);
             //$scope.map.fitBounds($scope.bounds);
             
-            new google.maps.Marker({
+               var marker =  new google.maps.Marker({
                 position: markerLatLng,
                 map: $scope.map,
-                title: title,
+                title: business.name,
                 icon: 'http://yohman.bol.ucla.edu/images/yelp.png'
             });
 
@@ -228,12 +234,12 @@
             */
         
             //add an onclick event
-            /*
-            google.maps.event.addListener(yelp[i], 'click', function() {
-                infowindow.setContent(infowindowcontent);
-                infowindow.open(map,yelp[i]);
+            
+            google.maps.event.addListener(marker,'click', function() {
+                // infowindow.setContent(infowindowcontent);
+                infowindow.open($scope.map, marker);
             });
-            */
+            
         }
 
         $scope.findPlaces = function(lat, lng) {
@@ -243,7 +249,7 @@
               location: coord,
               radius: '5000',
               //keyword: $scope.placesSearch
-              types: ['food']
+              type: ['gas_station']
             };
 
             setTimeout( function() {
@@ -267,33 +273,33 @@
 
         
 
-        $scope.getPlaceDetails = function(place_id) {  
+        // $scope.getPlaceDetails = function(place_id) {  
 
-            var request = {
-                placeId: place_id
-            };
+        //     var request = {
+        //         placeId: place_id
+        //     };
 
-            //service = new google.maps.places.PlacesService(map);
-            // Setting delay to prevent OVER_QUERY_LIMIT error
-            setTimeout( function() {
-                  $scope.placesService.getDetails(request, function(place, status) {
-                      if (status == google.maps.places.PlacesServiceStatus.OK) {
-                            //createMarker(place);
-                            console.log("Place Response:");
-                            console.log(place);
-                            $scope.createPlacesMarker(place.geometry.location.k, place.geometry.location.B, place.name);
+        //     //service = new google.maps.places.PlacesService(map);
+        //     // Setting delay to prevent OVER_QUERY_LIMIT error
+        //     setTimeout( function() {
+        //           $scope.placesService.getDetails(request, function(place, status) {
+        //               if (status == google.maps.places.PlacesServiceStatus.OK) {
+        //                     //createMarker(place);
+        //                     console.log("Place Response:");
+        //                     console.log(place);
+        //                     $scope.createPlacesMarker(place.geometry.location.k, place.geometry.location.B, place.name);
 
 
-                            $scope.placeDetails.push(place);
-                            $scope.$apply(); // necessary to update list
-                      }
-                      else {
-                          console.log("Place Details ERROR:");
-                          console.log(status);
-                      }
-                  });
-              }, $scope.apiDelay );
-        }
+        //                     $scope.placeDetails.push(place);
+        //                     $scope.$apply(); // necessary to update list
+        //               }
+        //               else {
+        //                   console.log("Place Details ERROR:");
+        //                   console.log(status);
+        //               }
+        //           });
+        //       }, $scope.apiDelay );
+        // }
 
         $scope.clearDirections = function() {
             //$scope.directionsDisplay.setDirections({ routes: [] });
@@ -381,7 +387,7 @@
           <ul>
             <li ng-repeat="detail in placeDetails">
               <h4>{{detail.name}}</h4>
-              <!--{{detail.formatted_address}}-->
+              <h5>{{detail.address1}}, {{detail.city}} {{detail.state}}, {{detail.zip}}</h5>
             </li>
           </ul>
         </div>
