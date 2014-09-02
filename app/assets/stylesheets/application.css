@@ -14,9 +14,15 @@
  *= require_self
  */
 
+<<<<<<< HEAD
 body {
     padding-top: 50px;
 }
+=======
+ @import 'bootstrap';
+ 
+
+>>>>>>> 1124c014881777b11f3d4658de205c2fe43d2a85
 
 #content {
     margin-left: 5px;
