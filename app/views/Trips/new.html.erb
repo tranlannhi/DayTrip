@@ -1,26 +1,43 @@
-    <div ng-app ng-controller="dayTripper">
-<div class="container">
-    <div class="row">
-        <div class="col-sm-3 col-md-3">
-            <div class="panel-group" id="accordion">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><span class="glyphicon glyphicon-folder-close">
-                            </span>Direction</a>
-                        </h4>
-                    </div>
-                    <div id="collapseOne" class="panel-collapse collapse in">
-                        <div class="panel-body">
-                            <table class="table">
-                                <tr>
-                                    <div id="directions"></div>
-                                </tr>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-                <div class="panel panel-default">
+<div ng-app ng-controller="dayTripper">
+    <div class="maincontainer">
+        <div class="row">
+            <div class="col-md-3">
+
+
+
+
+
+
+                <!--INPUT---FORM-->
+                <div class="formwrapper">
+                  <%= form_for @trip do |f| %>
+
+
+                  <%= f.text_field :origin, placeholder: "origin", value: "{{routeFrom}}", :'ng-model' => 'routeFrom' , class: 'form-control' %><br/>
+                  <%= f.text_field :destination, placeholder: "destination", value: "{{routeTo}}", :'ng-model' => 'routeTo', class: 'form-control' %><br/>
+                  <% end %>
+
+                  <form>
+                     <input class="form-control" type="text" ng-model="placesSearch" />
+                     <input class="btn btn-primary" type="submit" ng-click="search()"/>
+                 </form>
+
+
+
+
+
+
+
+
+
+                 <div class="panel-group" id="accordion">
+                 </div>
+                 <%# Places Link %>
+
+
+
+
+                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4 class="panel-title">
                             <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"><span class="glyphicon glyphicon-th">
@@ -32,61 +49,80 @@
                             <table class="table">
                                 <tr>
                                     <div>
-                                                  <h2>Way Points</h2>
-                                                  <ol>
-                                                    <li ng-repeat="detail in placeDetails">
-                                                      <h4>{{detail.name}}</h4>
-                                                      <h5>{{detail.address1}}, {{detail.city}} {{detail.state}}, {{detail.zip}}</h5>
-                                                    </li>
-                                                  </ol>
-                                                </div>
-                                </tr>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree"><span class="glyphicon glyphicon-user">
-                            </span>Directions</a>
-                        </h4>
-                    </div>
-                    <div id="collapseThree" class="panel-collapse collapse">
-                        <div class="panel-body">
-                            <table class="table">
-                                <tr>
+                                      <h2>Way Points</h2>
+                                      <ol>
+                                        <li ng-repeat="detail in placeDetails">
+                                          <h4>{{detail.name}}</h4>
+                                          <h5>{{detail.address1}}, {{detail.city}} {{detail.state}}, {{detail.zip}}</h5>
+                                      </li>
+                                  </ol>
+                              </div>
+                          </tr>
+                      </table>
+                  </div>
+              </div>
+          </div>
 
-                                </tr>
 
-                            </table>
-                        </div>
-                    </div>
-                </div>
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour"><span class="glyphicon glyphicon-file">
-                            </span>Something else</a>
-                        </h4>
-                    </div>
-                    <div id="collapseFour" class="panel-collapse collapse">
-                        <div class="panel-body">
-                            <table class="table">
-                                <tr>
 
-                            </table>
-                        </div>
-                    </div>
+
+          <%# Directions Link %>
+
+          <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><span class="glyphicon glyphicon-folder-close">
+                    </span>Direction</a>
+                </h4>
+            </div>
+            <div id="collapseOne" class="panel-collapse collapse in">
+                <div class="panel-body">
+                    <table class="table">
+                        <tr>
+                            <div id="directions"></div>
+                        </tr>
+                    </table>
                 </div>
             </div>
         </div>
-        <div class="col-sm-9 col-md-9">
-            <div id="content" class="span12">
-            <div id="map_canvas" style="height: 400px; display: block; margin-left: auto; margin-right: auto; margin-top: auto; margin-bottom: auto;"></div>
+
+
+        <%# Saved Places %>
+
+         <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><span class="glyphicon glyphicon-folder-close">
+                    </span>Saved Places</a>
+                </h4>
+            </div>
+            <div id="collapseOne" class="panel-collapse collapse in">
+                <div class="panel-body">
+                    <table class="table">
+                        <tr>
+
+                        </tr>
+                    </table>
+                </div>
+            </div>
         </div>
-        </div>
+
+
+
+
+
+
+
+
+
     </div>
+</div>
+<div class= "map_container">
+    <div id="map_canvas"></div>
+</div>
+
+</div>
+
 </div>
 
 
@@ -97,38 +133,10 @@
 
 
 
-        <!--INPUT---FORM-->
-    <div class="col-sm-4 col-sm-offset-0">
-      <%= form_for @trip do |f| %>
+</div>
 
 
-        <%= f.text_field :origin, placeholder: "origin", value: "{{routeFrom}}", :'ng-model' => 'routeFrom' , class: 'form-control' %><br/>
-        <%= f.text_field :destination, placeholder: "destination", value: "{{routeTo}}", :'ng-model' => 'routeTo', class: 'form-control' %><br/>
-
-
-        <%= f.submit "Save Trip", class: 'btn btn-primary' %>
-
-      <% end %>
-    </div>
-
-
-        <div class="textcenter">
-            <button id="routeGo" ng-click="calcRoute()">Route</button>
-            <button id="routeClear" ng-click="clearDirections()">Clear Route</button>
-        </div>
-
-
-
-
-        <form ng-click="search()">
-           <input type="text" ng-model="placesSearch" />
-           <input type="submit" />
-        </form>
-
-
-
-
-    </div>
+</div> <%# controller div%>
 
 
 

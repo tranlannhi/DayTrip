@@ -1,6 +1,4 @@
-body {
-    margin-top:50px;
-}
+
 .glyphicon {
     margin-right:10px;
 }
@@ -8,8 +6,13 @@ body {
     padding:0px;
 }
 .panel-body table tr td {
-    padding-left: 15px
+    padding-left: 10px
 }
 .panel-body .table {
     margin-bottom: 0px;
+}
+
+.panel-group {
+  margin-left: -150px;
+
 }

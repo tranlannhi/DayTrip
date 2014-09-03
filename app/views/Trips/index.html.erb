@@ -1,9 +1,32 @@
+
+
 <div class="form animated flipInX">
-  <h2>Login To Your Account</h2>
+  <h2>Get Going!</h2>
   <form>
-    <input placeholder="Username" type="text"></input>
-    <input placeholder="Password" type="password"></input>
+    <div ng-app ng-controller="dayTripper">
+
+      <%= form_for @trip do |f| %>
+
+
+        <%= f.text_field :origin, placeholder: "origin",  :'ng-model' => 'routeFrom' , class: 'form-control' %><br/>
+        <%= f.text_field :destination, placeholder: "destination", :'ng-model' => 'routeTo', class: 'form-control' %><br/>
+
+
+      <% end %>
+
+
+ <form ng-click="search()">
+           <input type="text" ng-model="placesSearch" />
+           <input type="submit" />
+        </form>
+
+</div>
+
     <button>Login</button>
   </form>
 </div>
+
+
+
+
 
