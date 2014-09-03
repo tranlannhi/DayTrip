@@ -1,9 +1,9 @@
 source 'https://rubygems.org'
 
 
-gem 'angularjs-rails'
-gem 'active_model_serializers'
-gem 'angular-rails-templates'
+# gem 'angularjs-rails'
+# gem 'active_model_serializers'
+# gem 'angular-rails-templates'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.4'
@@ -30,7 +30,7 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
 gem 'spring',        group: :development
 
-<<<<<<< HEAD
+# <<<<<<< HEAD
 # debugging tools
 group :development do
   gem 'meta_request'
@@ -45,10 +45,10 @@ group :development, :test do
   gem "jasmine", github: "pivotal/jasmine-gem"
   gem 'shoulda-matchers'
 end
-=======
-group :development, :test do
-	gem "rspec-rails", '2.14.2'
-end
+# =======
+# group :development, :test do
+# 	gem "rspec-rails", '2.14.2'
+# end
 # Bootstraping (next 2 gems)
 gem 'bootstrap-sass'
 
@@ -56,7 +56,7 @@ group :production do
   gem 'rails_12factor'
 end
 
->>>>>>> 1124c014881777b11f3d4658de205c2fe43d2a85
+# >>>>>>> 1124c014881777b11f3d4658de205c2fe43d2a85
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

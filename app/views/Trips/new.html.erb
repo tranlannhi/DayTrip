@@ -24,13 +24,12 @@
 
 
         <!--INPUT---FORM-->
-    <div class="col-sm-4 col-sm-offset-0">
+    <div class="col-sm-4 col-sm-offset-0" style = "margin-top:50px;">
       <%= form_for @trip do |f| %>
 
 
         <%= f.text_field :origin, placeholder: "origin", value: "{{routeFrom}}", :'ng-model' => 'routeFrom' , class: 'form-control' %><br/>
         <%= f.text_field :destination, placeholder: "destination", value: "{{routeTo}}", :'ng-model' => 'routeTo', class: 'form-control' %><br/>
-
 
         <%= f.submit "Save Trip", class: 'btn btn-primary' %>
 
@@ -48,10 +47,7 @@
             <div id="map_canvas" style="height: 400px; display: block; margin-left: auto; margin-right: auto; margin-top: auto; margin-bottom: auto;"></div>
         </div>
 
-        <form ng-click="search()">
-           <input type="text" ng-model="placesSearch" />
-           <input type="submit" />
-        </form>
+        
 
         <div>
           <h2>Way Points</h2>
