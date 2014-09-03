@@ -13,7 +13,9 @@
  *= require_tree .
  *= require_self
  */
-
+body{
+overflow: hidden;
+}
 
 #map_canvas {
     height: 100%;

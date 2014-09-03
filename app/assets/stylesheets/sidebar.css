@@ -1,4 +1,6 @@
-
+.panel {
+  margin-bottom: 0px;
+}
 .glyphicon {
     margin-right:10px;
 }
@@ -6,7 +8,7 @@
     padding:0px;
 }
 .panel-body table tr td {
-    padding-left: 10px
+    padding-left: 0px
 }
 .panel-body .table {
     margin-bottom: 0px;
@@ -15,4 +17,25 @@
 .panel-group {
   margin-left: -150px;
 
+}
+
+.formwrapper {
+width : 348px;
+}
+
+.sidebar-scroll {
+  max-height: 820px;
+  overflow: hidden;
+  overflow-y: auto;
+}
+
+.panel-scroll {
+      max-height: 320px;
+  overflow: hidden;
+  overflow-y: auto;
+  }
+
+.panel a:hover {
+ text-decoration:none;
+ color:#222;
 }

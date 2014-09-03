@@ -9,7 +9,7 @@
 
 
                 <!--INPUT---FORM-->
-                <div class="formwrapper">
+                <div class="formwrapper sidebar-scroll">
                   <%= form_for @trip do |f| %>
 
 
@@ -22,16 +22,6 @@
                      <input class="btn btn-primary" type="submit" ng-click="search()"/>
                  </form>
 
-
-
-
-
-
-
-
-
-                 <div class="panel-group" id="accordion">
-                 </div>
                  <%# Places Link %>
 
 
@@ -40,11 +30,11 @@
                  <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4 class="panel-title">
-                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"><span class="glyphicon glyphicon-th">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><span class="glyphicon glyphicon-th">
                             </span>Local Places</a>
                         </h4>
                     </div>
-                    <div id="collapseTwo" class="panel-collapse collapse">
+                    <div id="collapseOne" class="panel-collapse collapse in panel-scroll">
                         <div class="panel-body">
                             <table class="table">
                                 <tr>
@@ -71,11 +61,11 @@
           <div class="panel panel-default">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><span class="glyphicon glyphicon-folder-close">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"><span class="glyphicon glyphicon-folder-close">
                     </span>Direction</a>
                 </h4>
             </div>
-            <div id="collapseOne" class="panel-collapse collapse in">
+            <div id="collapseTwo" class="panel-collapse collapse panel-scroll">
                 <div class="panel-body">
                     <table class="table">
                         <tr>
@@ -96,7 +86,7 @@
                     </span>Saved Places</a>
                 </h4>
             </div>
-            <div id="collapseOne" class="panel-collapse collapse in">
+            <div id="collapseOne" class="panel-collapse collapse panel-scroll">
                 <div class="panel-body">
                     <table class="table">
                         <tr>
