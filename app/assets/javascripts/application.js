@@ -18,10 +18,6 @@
 // require bootstrap.min
 
 
-
-
-
-
     function dayTripper($scope, $http, $route) {
 
 

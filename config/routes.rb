@@ -7,6 +7,16 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'trips#new'
 
+
+  # API routing 
+  scope '/api' do
+    resources :itineraries, defaults: {format: :json}
+  end   
+  scope '/api' do
+    resources :accounts, defaults: {format: :json}
+  end
+
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
