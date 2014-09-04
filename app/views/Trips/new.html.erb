@@ -18,8 +18,12 @@
                   <% end %>
 
                   <form>
-                     <input placeholder="Search for tacos, shopping, attactions, etc..."class="form-control" type="text" ng-model="placesSearch" />
-                     <input class="btn btn-primary" type="submit" ng-click="search()"/>
+                    <div class="input-group">
+                        <input id="searchbar" placeholder="Search for tacos, shopping, etc..."class="form-control" type="text" ng-model="placesSearch" />
+                                <div class="input-group-btn">
+                                    <button ng-click="search()"class="btn btn-primary searchbutton" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+                                </div>
+                    </div>
                  </form>
 
                  <%# Places Link %>
@@ -30,11 +34,11 @@
                  <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4 class="panel-title">
-                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><span class="glyphicon glyphicon-th">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><span class="glyphicon glyphicon-glass">
                             </span>Local Places</a>
                         </h4>
                     </div>
-                    <div id="collapseOne" class="panel-collapse collapse in panel-scroll">
+                    <div id="collapseOne" class="panel-collapse collapse panel-scroll">
                         <div class="panel-body">
                             <table class="table">
                                 <tr>
@@ -49,7 +53,7 @@
                                               <h5>{{detail.address1}}, {{detail.city}} {{detail.state}}, {{detail.zip}}</h5>
                                           </label>
                                         </li>
-                                        
+
 
                                       </ol>
                                   </div>
@@ -59,15 +63,12 @@
                   </div>
               </div>
 
-
-
-
           <%# Directions Link %>
 
           <div class="panel panel-default">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"><span class="glyphicon glyphicon-folder-close">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"><span class="glyphicon glyphicon-road">
                     </span>Direction</a>
                 </h4>
             </div>
@@ -88,7 +89,7 @@
          <div class="panel panel-default">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree"><span class="glyphicon glyphicon-folder-close">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree"><span class="glyphicon glyphicon-heart">
                     </span>Saved Places</a>
                 </h4>
             </div>
@@ -101,12 +102,12 @@
                                         <!--<li ng-repeat="detail in placeDetails">-->
 
                                         <li ng-repeat="detail in selectedPlaces">
-                                      
+
                                             <h4>{{detail[0].name}}</h4>
                                             <h5>{{detail[0].address1}}, {{detail[0].city}} {{detail[0].state}}, {{detail[0].zip}}</h5>
-                                          
+
                                         </li>
-                                        
+
                                       </ol>
                                   </div>
                         </tr>
