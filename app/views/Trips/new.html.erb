@@ -40,17 +40,24 @@
                                 <tr>
                                     <div>
                                       <ol>
+                                        <!--<li ng-repeat="detail in placeDetails">-->
+
                                         <li ng-repeat="detail in placeDetails">
-                                          <h4>{{detail.name}}</h4>
-                                          <h5>{{detail.address1}}, {{detail.city}} {{detail.state}}, {{detail.zip}}</h5>
-                                      </li>
-                                  </ol>
-                              </div>
-                          </tr>
-                      </table>
+                                          <label>
+                                              <input type="checkbox" ng-model="checked" ng-change="toggleWaypoint(checked, detail.id)" />
+                                              <h4>{{detail.name}}</h4>
+                                              <h5>{{detail.address1}}, {{detail.city}} {{detail.state}}, {{detail.zip}}</h5>
+                                          </label>
+                                        </li>
+                                        
+
+                                      </ol>
+                                  </div>
+                              </tr>
+                          </table>
+                      </div>
                   </div>
               </div>
-          </div>
 
 
 
@@ -81,15 +88,27 @@
          <div class="panel panel-default">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><span class="glyphicon glyphicon-folder-close">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree"><span class="glyphicon glyphicon-folder-close">
                     </span>Saved Places</a>
                 </h4>
             </div>
-            <div id="collapseOne" class="panel-collapse collapse panel-scroll">
+            <div id="collapseThree" class="panel-collapse collapse panel-scroll">
                 <div class="panel-body">
                     <table class="table">
                         <tr>
+                          <div>
+                                      <ol>
+                                        <!--<li ng-repeat="detail in placeDetails">-->
 
+                                        <li ng-repeat="detail in selectedPlaces">
+                                      
+                                            <h4>{{detail[0].name}}</h4>
+                                            <h5>{{detail[0].address1}}, {{detail[0].city}} {{detail[0].state}}, {{detail[0].zip}}</h5>
+                                          
+                                        </li>
+                                        
+                                      </ol>
+                                  </div>
                         </tr>
                     </table>
                 </div>
