@@ -4,13 +4,23 @@
             <div class="col-md-3">
 
 
+<<<<<<< HEAD
+=======
+        <!--INPUT---FORM-->
+    <div class="col-sm-4 col-sm-offset-0" style = "margin-top:50px;">
+      <%= form_for @trip do |f| %>
+>>>>>>> master
 
 
 
+<<<<<<< HEAD
 
                 <!--INPUT---FORM-->
                 <div class="formwrapper sidebar-scroll">
                   <%= form_for @trip do |f| %>
+=======
+        <%= f.submit "Save Trip", class: 'btn btn-primary' %>
+>>>>>>> master
 
 
                   <%= f.text_field :origin, placeholder: "origin", value: "{{routeFrom}}", :'ng-model' => 'routeFrom' , class: 'form-control' %><br/>
@@ -25,6 +35,20 @@
                  <%# Places Link %>
 
 
+<<<<<<< HEAD
+=======
+        
+
+        <div>
+          <h2>Way Points</h2>
+          <ol>
+            <li ng-repeat="detail in placeDetails">
+              <h4>{{detail.name}}</h4>
+              <h5>{{detail.address1}}, {{detail.city}} {{detail.state}}, {{detail.zip}}</h5>
+            </li>
+          </ol>
+        </div>
+>>>>>>> master
 
 
                  <div class="panel panel-default">

@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20140822072450) do
   create_table "trips", force: true do |t|
     t.string   "origin"
     t.string   "destination"
+    # t.string 	"waypoints", :array =>true
     t.datetime "created_at"
     t.datetime "updated_at"
   end

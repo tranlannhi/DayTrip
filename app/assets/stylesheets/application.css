@@ -13,8 +13,48 @@
  *= require_tree .
  *= require_self
  */
+<<<<<<< HEAD
 body{
 overflow: hidden;
+=======
+
+<<<<<<< HEAD
+body {
+    padding-top: 50px;
+}
+=======
+ @import 'bootstrap';
+ 
+
+>>>>>>> 1124c014881777b11f3d4658de205c2fe43d2a85
+
+#content {
+    margin-left: 5px;
+}
+
+#mapCanvas img {
+    max-width: none;
+}
+
+#toggleSidebar {
+    position:fixed;
+    left:0;
+    top:45px;
+    display:block;
+    color:#779DD7;
+    padding:2px 4px;
+}
+
+
+.accordion-heading .accordion-toggle-small {
+    display: block;
+    padding: 4px 8px; /*8px 15px;*/
+}
+
+.accordion-inner-small {
+    padding: 4px 8px;  /*9px 15px;*/
+    border-top: 1px solid #e5e5e5;
+>>>>>>> master
 }
 
 #map_canvas {

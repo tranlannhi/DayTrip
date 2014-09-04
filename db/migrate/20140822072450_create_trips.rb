@@ -3,7 +3,7 @@ class CreateTrips < ActiveRecord::Migration
     create_table :trips do |t|
       t.string :origin
       t.string :destination
-
+      t.string :waypoint, array: true
       t.timestamps
     end
   end
