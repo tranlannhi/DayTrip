@@ -1,10 +1,9 @@
 class TripsController < ApplicationController
 
 	def create
-    	trip = Trip.new(params.require(:trip).permit(:origin, :destination)
+    	trip = Trip.new(params.require(:trip).permit(:origin, :destination, :search)
   		)
-    	#origin = Origin.new()
-    	#destination = Destination.new()
+
 
 	  	if trip.save
 		  	redirect_to trips_path
@@ -12,24 +11,11 @@ class TripsController < ApplicationController
 	      render 'new'
 	  	end
 
-
-	    # @origin = Origin.find(params[:origin_id])
-	    # @destination = Destination.find(params[:destination_id])
-	    # @trip = Trip.new(
-	    #   params.require(:origin, :destination).permit(:text)
-	    #   )
-	    
-	    # @trip.origin.destination = @trip
-	    # if @trip.save
-	    #   redirect_to map_path #need to update this
-	    #  else
-	    #  render 'new' 
-	    # end
   	end
 
 
   	def index
-	  	@trips = Trip.all
+	  	@trip = Trip.new
 	 end
 
 	  def new
@@ -38,10 +24,10 @@ class TripsController < ApplicationController
     # 	@destination = Destination.new
 	  end
 
-	  
+
 
 	  def edit
-	    
+
 	  end
 
 	  def destroy

@@ -13,6 +13,10 @@
  *= require_tree .
  *= require_self
  */
+<<<<<<< HEAD
+body{
+overflow: hidden;
+=======
 
 <<<<<<< HEAD
 body {
@@ -50,14 +54,16 @@ body {
 .accordion-inner-small {
     padding: 4px 8px;  /*9px 15px;*/
     border-top: 1px solid #e5e5e5;
+>>>>>>> master
 }
 
-.no-sidebar {
-    margin-left:0 !important;
+#map_canvas {
+    height: 100%;
+    width: 100%;
 }
 
-.scrollDiv {
-    overflow-y: scroll;
-    display: inline-block;
-    float: none; /* Very important */
+.map_container {
+    margin-left: 364px;
+    height: 780px;
+    width: 1070px;
 }
