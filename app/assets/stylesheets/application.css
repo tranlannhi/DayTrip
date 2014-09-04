@@ -26,4 +26,5 @@ overflow: hidden;
     margin-left: 364px;
     height: 780px;
     width: 1070px;
+    position: fixed;
 }

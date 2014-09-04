@@ -30,7 +30,7 @@
         $scope.numPointsAlongRoute = 10;
         $scope.numPlacesPerPoint = 3;
         //$scope.apiDelay = 1000;
-        $scope.placesSearch= "food";
+        $scope.placesSearch;
         $scope.infowindow = new google.maps.InfoWindow();
 
         // $scope.markers = [];
