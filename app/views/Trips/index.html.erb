@@ -1,8 +1,0 @@
-<%= form_for @trip do |f| %>
-<%= f.text_field :origin, placeholder: "Starting Point", value: "{{routeFrom}}", class: 'form-control' %><br/>
-                  <%= f.text_field :destination, placeholder: "Destination", value: "{{routeTo}}", class: 'form-control' %><br/>
-                   <%= f.text_field :searchString, placeholder: "Search for tacos", class: "form-control" %>
-                   <%= f.submit %>
-                  <% end %>
-
-                 

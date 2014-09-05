@@ -4,7 +4,7 @@ class CreateTrips < ActiveRecord::Migration
       t.string :origin
       t.string :destination
       t.string :waypoints
-
+      t.string :searchString
       t.timestamps
     end
   end
