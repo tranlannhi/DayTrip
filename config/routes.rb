@@ -1,11 +1,22 @@
 Rails.application.routes.draw do
 
   resources :trips, only: [:index, :new, :create, :destroy]
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
   root 'trips#new'
+
+
+  # API routing 
+  scope '/api' do
+    resources :itineraries, defaults: {format: :json}
+  end   
+  scope '/api' do
+    resources :accounts, defaults: {format: :json}
+  end
+
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

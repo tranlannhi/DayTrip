@@ -18,10 +18,6 @@
 // require bootstrap.min
 
 
-
-
-
-
     function dayTripper($scope, $http, $route) {
 
 
@@ -119,11 +115,14 @@
 
         $scope.search = function() {
            //$scope.placeDetails = [];
+          
+           
            for (var i = 0; i < $scope.waypoints.length; i++) {
               $scope.savePlaces.push($scope.getPlaceById($scope.waypoints[i]));
             }
-
-            $scope.calcRoute();
+            console.log("savePlaces");
+            console.log($scope.savePlaces);
+             $scope.calcRoute();
         };
 
         $scope.toggleWaypoint = function(checked, waypointId) {
