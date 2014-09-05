@@ -1,6 +1,7 @@
 class TripsController < ApplicationController
 
 	def create
+
     	trip = Trip.new(params.require(:trip).permit(:origin, :destination, :searchString, :id))
   		
 
@@ -13,10 +14,10 @@ class TripsController < ApplicationController
 
   	end
 
-
   	def index
   		# @trip = Trip.find_by_id(params[:id])
 	  	@trip = Trip.new
+
 	  	
 	 end
 
@@ -28,15 +29,13 @@ class TripsController < ApplicationController
 
 	  end
 
+	def edit
 
+	end
 
-	  def edit
-
-	  end
-
-	  def destroy
+	def destroy
 	  	Trip.find(params[:id]).destroy
 	  	redirect_to trips_path
-	  end
+	end
 
 end
