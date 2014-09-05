@@ -14,7 +14,7 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
-
+//= require bootstrap
 // require bootstrap.min
 
 
@@ -77,7 +77,7 @@
                   }
                 );
               }
-              
+
               console.log("Lat Long Arr:");
               console.log($scope.latlongArr);
             }
@@ -128,7 +128,7 @@
         $scope.toggleWaypoint = function(checked, waypointId) {
 
           console.log("Checked?: " + checked + ", Id: " + waypointId);
-          
+
           if (checked == true) {
             $scope.addToWaypoints(waypointId);
           }
@@ -145,7 +145,7 @@
 
             for (var i = 0; i < $scope.waypoints.length; i++) {
               $scope.selectedPlaces.push($scope.getPlaceById($scope.waypoints[i]));
-              
+
             }
 
             console.log("Selected Places:");
@@ -251,13 +251,13 @@
                 position: markerLatLng,
                 map: $scope.map,
                 title: business.name,
-                icon: '/assets/marker.jpg'
+                icon: '/assets/yelp.png'
             });
 
 
             //add an onclick event
             google.maps.event.addListener(marker,'click', function() {
-                
+
                 // infowindow.setContent(infowindowcontent);
                 infowindow.open($scope.map, marker);
             });

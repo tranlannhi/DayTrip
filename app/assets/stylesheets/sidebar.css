@@ -48,3 +48,17 @@ position: fixed;
  text-decoration:none;
  color:#222;
 }
+
+.searchbutton {
+  border-radius: 70px;
+  right: 24px;
+}
+
+#searchbar {
+  width: 250px;
+  margin-left: 23px;
+}
+
+.input-group {
+  margin-bottom: 20px;
+}
