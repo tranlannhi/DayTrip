@@ -9,8 +9,8 @@
           <%= form_for @trip do |f| %>
 
 
-          <%= f.text_field :origin, placeholder: "Starting Point", value: "{{routeFrom}}", :'ng-model' => 'routeFrom' , class: 'form-control' %><br/>
-          <%= f.text_field :destination, placeholder: "Destination", value: "{{routeTo}}", :'ng-model' => 'routeTo', class: 'form-control' %><br/>
+          <%= f.text_field :origin, placeholder: "Starting Point", value: "{{routeFrom}}", :'ng-model' => 'routeFrom', class: 'form-control', type: 'text' %><br/>
+          <%= f.text_field :destination, placeholder: "Destination", value: "{{routeTo}}", :'ng-model' => 'routeTo', class: 'form-control', type: 'text' %><br/>
           <% end %>
 
           <form>
@@ -31,7 +31,7 @@
                   </span>Local Places</a>
               </h4>
           </div>
-          <div id="collapseOne" class="panel-collapse collapse panel-scroll">
+          <div id="collapseOne" class="panel-collapse in collapse panel-scroll">
             <div class="panel-body">
               <table class="table">
                 <tr>
@@ -44,6 +44,7 @@
                             <input type="checkbox" ng-model="checked" ng-change="toggleWaypoint(checked, detail.id)" />
                             <h4>{{detail.name}}</h4>
                             <h5>{{detail.address1}}, {{detail.city}} {{detail.state}}, {{detail.zip}}</h5>
+                            <img src="{{detail.rating_img_url}}"/>
                         </label>
                       </li>
 
