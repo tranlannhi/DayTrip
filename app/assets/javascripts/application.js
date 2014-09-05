@@ -115,8 +115,8 @@
 
         $scope.search = function() {
            //$scope.placeDetails = [];
-          
-           
+
+
            for (var i = 0; i < $scope.waypoints.length; i++) {
               $scope.savePlaces.push($scope.getPlaceById($scope.waypoints[i]));
             }
@@ -239,6 +239,7 @@
             infowindowcontent += '<img src="'+business.photo_url+'"><br>';
             infowindowcontent += '<a href="'+business.url+'" target="_blank">see it on yelp</a>';
             infowindowcontent += '<strong>Rating ' + business.avg_rating+'</strong><br>';
+            infowindowcontent += '<strong>Rating ' + business.review_count+'</strong><br>';
 
             var markerLatLng = new google.maps.LatLng(business.latitude, business.longitude);
             var infowindow = new google.maps.InfoWindow({
