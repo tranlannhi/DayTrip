@@ -6,7 +6,7 @@ class TripsController < ApplicationController
 
 
 	  	if trip.save
-		  	redirect_to trips_path
+		  	redirect_to new_trip_path
 	    else
 	      render 'new'
 	  	end
@@ -16,6 +16,7 @@ class TripsController < ApplicationController
 
   	def index
 	  	@trip = Trip.new
+	  	
 	 end
 
 	  def new

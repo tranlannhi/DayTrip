@@ -35,7 +35,7 @@
         $scope.waypoints = [];
         $scope.selectedPlaces = [];
         $scope.latlongArr = [];
-        $scope.savePlaces = [] + $scope.selectedPlaces;
+        $scope.savePlaces = [];
         /*
         google.maps.event.addListener(directionsDisplay, 'directions_changed', function() {
 
@@ -115,12 +115,14 @@
 
         $scope.search = function() {
            //$scope.placeDetails = [];
-              $scope.calcRoute();
+          
+           
            for (var i = 0; i < $scope.waypoints.length; i++) {
               $scope.savePlaces.push($scope.getPlaceById($scope.waypoints[i]));
             }
-
-         
+            console.log("savePlaces");
+            console.log($scope.savePlaces);
+             $scope.calcRoute();
         };
 
         $scope.toggleWaypoint = function(checked, waypointId) {
