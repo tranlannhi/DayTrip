@@ -1,8 +1,8 @@
 class TripsController < ApplicationController
 
 	def create
-    	trip = Trip.new(params.require(:trip).permit(:origin, :destination, :search)
-  		)
+    	trip = Trip.new(params.require(:trip).permit(:origin, :destination, :search))
+  		
 
 
 	  	if trip.save
