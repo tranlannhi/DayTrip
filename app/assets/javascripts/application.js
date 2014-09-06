@@ -306,9 +306,9 @@
 
             infowindowcontent = '<strong>'+business.name+'</strong><br>';
             infowindowcontent += '<img src="'+business.photo_url+'"><br>';
-            infowindowcontent += '<a href="'+business.url+'" target="_blank">see it on yelp</a>';
-            infowindowcontent += '<strong>Rating ' + business.avg_rating+'</strong><br>';
-            infowindowcontent += '<strong>Rating ' + business.review_count+'</strong><br>';
+            infowindowcontent += '<a href="'+business.url+'" target="_blank">see it on yelp</a>'+'<br>';
+            infowindowcontent += '<img src=" '+business.rating_img_url+'"><br>';
+            infowindowcontent += '<strong>Rating Count: ' + business.review_count+'</strong><br>';
 
             var markerLatLng = new google.maps.LatLng(business.latitude, business.longitude);
             var infowindow = new google.maps.InfoWindow({
