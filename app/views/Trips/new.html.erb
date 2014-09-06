@@ -36,11 +36,15 @@
                       <!--<li ng-repeat="detail in placeDetails">-->
 
                       <li ng-repeat="detail in placeDetails">
-                        <label>
-                            <input type="checkbox" ng-model="checked" ng-change="toggleWaypoint(checked, detail.id)" />
-                            <h4>{{detail.name}}</h4>
-                            <h5>{{detail.address1}}, {{detail.city}} {{detail.state}}, {{detail.zip}}</h5>
-                        </label>
+                       
+                        <div style="float: left; max-width: 70%">
+                          <h5>{{detail.name}}</h5>
+                          <h6>{{detail.address1}}, {{detail.city}} {{detail.state}}, {{detail.zip}}</h6>
+                        </div>  
+                        <div class="btn btn-default" ng-click="toggleWaypoint(true, detail.id)" style="     max-width: 30%; float:right">Add
+                        </div> 
+                          <div class="row" />
+                        </div>
                       </li>
                   
                     </ol>
@@ -91,7 +95,7 @@
                     <table class="table">
                         <tr>
                           <div>
-                             <ol>
+                            <ol>
                                        
 
                               <li ng-repeat="detail in savePlaces" >
@@ -104,7 +108,7 @@
 
 
                             </ol>
-                                  </div>
+                          </div>
                         </tr>
                     </table>
                   </div>  
