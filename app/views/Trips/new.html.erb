@@ -9,13 +9,17 @@
           <%= form_for @trip do |f| %>
 
 
-          <%= f.text_field :origin, placeholder: "Starting Point", value: "{{routeFrom}}", :'ng-model' => 'routeFrom' , class: 'form-control' %><br/>
-          <%= f.text_field :destination, placeholder: "Destination", value: "{{routeTo}}", :'ng-model' => 'routeTo', class: 'form-control' %><br/>
+          <%= f.text_field :origin, placeholder: "Starting Point", value: "{{routeFrom}}", :'ng-model' => 'routeFrom', class: 'form-control', type: 'text' %><br/>
+          <%= f.text_field :destination, placeholder: "Destination", value: "{{routeTo}}", :'ng-model' => 'routeTo', class: 'form-control', type: 'text' %><br/>
           <% end %>
 
           <form>
-             <input placeholder="Search for tacos, shopping, attactions, etc..."class="form-control" type="text" ng-model="placesSearch" />
-             <input class="btn btn-primary" type="submit" ng-click="search()"/>
+            <div class="input-group">
+             <input id="searchbar" placeholder="Search for tacos, shopping, attactions, etc..."class="form-control" type="text" ng-model="placesSearch" />
+             <div class="input-group-btn">
+             <button class="btn btn-primary searchbutton" type="submit" ng-click="search()"/><i class="glyphicon glyphicon-search"></i></button>
+           </div>
+           </div>
          </form>
 
         <%# Places Link %>
@@ -23,11 +27,11 @@
         <div class="panel panel-default">
           <div class="panel-heading">
               <h4 class="panel-title">
-                  <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><span class="glyphicon glyphicon-th">
+                  <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><span class="glyphicon glyphicon-cutlery">
                   </span>Local Places</a>
               </h4>
           </div>
-          <div id="collapseOne" class="panel-collapse collapse in panel-scroll">
+          <div id="collapseOne" class="panel-collapse in collapse panel-scroll">
             <div class="panel-body">
               <table class="table">
                 <tr>
@@ -40,13 +44,15 @@
                         <div style="float: left; max-width: 70%">
                           <h5>{{detail.name}}</h5>
                           <h6>{{detail.address1}}, {{detail.city}} {{detail.state}}, {{detail.zip}}</h6>
+                          <img src="{{detail.rating_img_url}}"/>
                         </div>  
                         <div class="btn btn-default" ng-click="toggleWaypoint(true, detail.id)" style="     max-width: 30%; float:right">Add
                         </div> 
                           <div class="row" />
                         </div>
+
                       </li>
-                  
+
                     </ol>
 
                   </div>
@@ -63,7 +69,7 @@
         <div class="panel panel-default">
           <div class="panel-heading">
             <h4 class="panel-title">
-              <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"><span class="glyphicon glyphicon-folder-close">
+              <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"><span class="glyphicon glyphicon-road">
               </span>Direction</a>
             </h4>
           </div>
@@ -111,10 +117,10 @@
                           </div>
                         </tr>
                     </table>
-                  </div>  
+                  </div>
                 </div>
-             </div>   
-        
+             </div>
+
         </div>
       </div>
       <div class= "map_container">
@@ -129,4 +135,4 @@
 </div>
 
 
-</div> <%# controller div%>            
+</div> <%# controller div%>

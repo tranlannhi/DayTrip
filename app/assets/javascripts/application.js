@@ -131,8 +131,8 @@
 
         $scope.search = function() {
            //$scope.placeDetails = [];
-          
-           
+
+
            for (var i = 0; i < $scope.waypoints.length; i++) {
                 if ($scope.removePlaces.indexOf($scope.waypoints[i]) == -1) {
                     console.log("Adding to SavePlaces: ");
@@ -308,6 +308,7 @@
             infowindowcontent += '<img src="'+business.photo_url+'"><br>';
             infowindowcontent += '<a href="'+business.url+'" target="_blank">see it on yelp</a>';
             infowindowcontent += '<strong>Rating ' + business.avg_rating+'</strong><br>';
+            infowindowcontent += '<strong>Rating ' + business.review_count+'</strong><br>';
 
             var markerLatLng = new google.maps.LatLng(business.latitude, business.longitude);
             var infowindow = new google.maps.InfoWindow({

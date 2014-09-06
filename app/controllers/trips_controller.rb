@@ -3,7 +3,7 @@ class TripsController < ApplicationController
 	def create
 
     	trip = Trip.new(params.require(:trip).permit(:origin, :destination, :searchString, :id))
-  		
+
 
 
 	  	if trip.save
@@ -18,7 +18,7 @@ class TripsController < ApplicationController
   		# @trip = Trip.find_by_id(params[:id])
 	  	@trip = Trip.new
 
-	  	
+
 	 end
 
 	  def new
