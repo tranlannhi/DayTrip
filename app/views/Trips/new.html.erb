@@ -1,3 +1,5 @@
+
+
 <div ng-app ng-controller="dayTripper">
 
   <div class="maincontainer">
@@ -9,8 +11,8 @@
           <%= form_for @trip do |f| %>
 
 
-          <%= f.text_field :origin, placeholder: "Starting Point", value: "{{routeFrom}}", :'ng-model' => 'routeFrom', class: 'form-control', type: 'text' %><br/>
-          <%= f.text_field :destination, placeholder: "Destination", value: "{{routeTo}}", :'ng-model' => 'routeTo', class: 'form-control', type: 'text' %><br/>
+          <%= f.text_field :origin, placeholder: "Starting Point", value: Trip.last.origin, class: 'form-control', type: 'text' %><br/>
+          <%= f.text_field :destination, placeholder: "Destination", value: Trip.last.destination, class: 'form-control', type: 'text' %><br/>
           <% end %>
 
           <form>
