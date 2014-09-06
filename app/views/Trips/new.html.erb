@@ -91,17 +91,19 @@
                     <table class="table">
                         <tr>
                           <div>
-                                      <ol>
-                                        <!--<li ng-repeat="detail in placeDetails">-->
+                             <ol>
+                                       
 
-                                        <li ng-repeat="detail in savePlaces">
+                              <li ng-repeat="detail in savePlaces" >
+                                    <div style="float: left; max-width: 70%">
+                                    <h5>{{detail[0].name}}</h5>
+                                    <h6>{{detail[0].address1}}, {{detail[0].city}} {{detail[0].state}}, {{detail[0].zip}}</h6></div> 
+                                    <div class="btn btn-default" ng-click="removeFromPlaces(detail[0].id)" style=" max-width: 30%; float:right"> Remove</div> 
+                                    <div class="row" />
+                               </li>
 
-                                            <h4>{{detail[0].name}}</h4>
-                                            <h5>{{detail[0].address1}}, {{detail[0].city}} {{detail[0].state}}, {{detail[0].zip}}</h5>
 
-                                        </li>
-
-                                      </ol>
+                            </ol>
                                   </div>
                         </tr>
                     </table>

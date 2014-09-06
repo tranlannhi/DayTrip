@@ -28,7 +28,8 @@
         $scope.numPlacesPerPoint = 3;
         //$scope.apiDelay = 1000;
         $scope.placesSearch;
-        $scope.infowindow = new google.maps.InfoWindow();
+        //$scope.infowindow = new google.maps.InfoWindow();
+        $scope.infoWindows = [];
 
         // $scope.markers = [];
         $scope.bounds = new google.maps.LatLngBounds ();
@@ -36,6 +37,7 @@
         $scope.selectedPlaces = [];
         $scope.latlongArr = [];
         $scope.savePlaces = [];
+        $scope.removePlaces = [];
         /*
         google.maps.event.addListener(directionsDisplay, 'directions_changed', function() {
 
@@ -62,10 +64,12 @@
         $scope.calcRoute = function() {
 
             //$scope.getYelp('Food');
-
             //var latlangArr = [];
+            $scope.latlongArr = [];
+
             $scope.getSelectedPlaces();
 
+            // Add to LatLng Array from selectedPlaces
             if ($scope.selectedPlaces != null) {
               for (var i = 0; i < $scope.selectedPlaces.length; i++) {
                 console.log("Building lat long array...");
@@ -80,6 +84,18 @@
 
               console.log("Lat Long Arr:");
               console.log($scope.latlongArr);
+            }
+
+            // Add to LatLng Array from savePlaces
+            if ($scope.savePlaces != null) {
+              for (var i = 0; i < $scope.savePlaces.length; i++) {
+                $scope.latlongArr.push(
+                  {
+                    location: new google.maps.LatLng($scope.savePlaces[i][0].latitude, $scope.savePlaces[i][0].longitude),
+                    stopover: true
+                  }
+                );
+              }
             }
 
             // clear placeDetails only after grabbing wayponts
@@ -118,11 +134,17 @@
           
            
            for (var i = 0; i < $scope.waypoints.length; i++) {
-              $scope.savePlaces.push($scope.getPlaceById($scope.waypoints[i]));
+                if ($scope.removePlaces.indexOf($scope.waypoints[i]) == -1) {
+                    console.log("Adding to SavePlaces: ");
+                    console.log($scope.waypoints[i]);
+                    $scope.savePlaces.push($scope.getPlaceById($scope.waypoints[i]));
+                }
+                
             }
+
             console.log("savePlaces");
             console.log($scope.savePlaces);
-             $scope.calcRoute();
+            $scope.calcRoute();
         };
 
         $scope.toggleWaypoint = function(checked, waypointId) {
@@ -134,6 +156,21 @@
           }
           else {
             $scope.removeFromWaypoints(waypointId);
+          }
+
+          $scope.getSelectedPlaces();
+        }
+
+        //toggle Places
+        $scope.togglePlaces = function(checked, waypointId) {
+
+          console.log("Checked?: " + checked + ", Id: " + waypointId);
+
+          if (checked == true) {
+            $scope.addToPlaces(waypointId);
+          }
+          else {
+            $scope.removeFromPlaces(waypointId);
           }
 
           $scope.getSelectedPlaces();
@@ -177,6 +214,38 @@
           if (index > -1) {
               $scope.waypoints.splice(index, 1);
           }
+        }
+
+         $scope.addToPlaces = function(id) {
+          console.log("Adding to Remove Places...");
+          $scope.removePlaces.push(id);
+        }
+
+        $scope.removeFromPlaces = function(id) {
+            //console.log("Removing Places...");
+              //console.log("ID: " + id);
+              //console.log("Save Places:");
+              //console.log($scope.savePlaces);
+
+            for(var i = 0; i < $scope.savePlaces.length; i++) {
+               //console.log("Inner array:");
+               //console.log($scope.savePlaces[i]);
+
+               //var index = $scope.savePlaces[i][0].indexOf(id);
+
+               if ($scope.savePlaces[i].length > 0) {
+                   if ($scope.savePlaces[i][0].id == id) {
+                        //console.log($scope.savePlaces[i][0].id + " = " + id);
+                        //console.log("Removing id " + id + "from index " + i);
+                        $scope.savePlaces.splice(i, 1);
+                        $scope.removePlaces.push(id);
+                        return;
+                   }
+               }
+            }
+
+          
+          
         }
 
 
@@ -254,16 +323,23 @@
                 icon: '/assets/yelp.png'
             });
 
+            $scope.infoWindows.push(infowindow);
+
 
             //add an onclick event
             google.maps.event.addListener(marker,'click', function() {
-
+                $scope.closeAllInfoWindows();
                 // infowindow.setContent(infowindowcontent);
                 infowindow.open($scope.map, marker);
             });
 
         }
 
+        $scope.closeAllInfoWindows = function() {
+          for (var i = 0; i < $scope.infoWindows.length; i++) {
+             $scope.infoWindows[i].close();
+          }
+        }
 
         $scope.clearDirections = function() {
             //$scope.directionsDisplay.setDirections({ routes: [] });
