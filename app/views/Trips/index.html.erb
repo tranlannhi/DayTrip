@@ -1,9 +1,21 @@
+<!-- 
 <div class="form animated flipInX">
   <h2>Get Going!</h2>
   <form action="trips/new">
-    <input placeholder="Starting Point" type="text"></input>
-    <input placeholder="Destination" type="password"></input>
-    <button>Explore</button>
+    <input id="k" placeholder="Starting Point" type="text"></input>
+    <input id="v" placeholder="Destination" type="text"></input>
+    <button id="button">Explore</button>
   </form>
 </div>
 
+ -->
+
+<div class="form animated flipInX">
+ <%= form_for @trip do |f| %>
+
+          <%= f.text_field :origin, placeholder: "Starting Point", class: 'form-control', type: 'text' %>
+          <%= f.text_field :destination, placeholder: "Destination", class: 'form-control', type: 'text' %>
+
+          <%= f.submit %>
+          <% end %>
+</div>

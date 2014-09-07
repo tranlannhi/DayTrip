@@ -17,8 +17,8 @@
 //= require bootstrap
 // require bootstrap.min
 
+    function dayTripper($scope, $http, $route, $timeout) {
 
-    function dayTripper($scope, $http, $route) {
 
 
         $scope.directionsDisplay = new google.maps.DirectionsRenderer({ draggable: false });
@@ -103,8 +103,8 @@
             $scope.waypoints = [];
 
             var request = {
-                origin: $scope.routeFrom,
-                destination: $scope.routeTo,
+                origin: document.getElementById("trip_origin").value,
+                destination: document.getElementById("trip_destination").value,
                 waypoints: $scope.latlongArr,
                 optimizeWaypoints: true,
                 travelMode: google.maps.TravelMode["DRIVING"]
@@ -146,6 +146,10 @@
             console.log($scope.savePlaces);
             $scope.calcRoute();
         };
+
+        $timeout(function(){
+            $scope.search();
+        }, 5);
 
         $scope.toggleWaypoint = function(checked, waypointId) {
 
