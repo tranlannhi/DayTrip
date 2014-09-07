@@ -31,7 +31,7 @@
         //$scope.infowindow = new google.maps.InfoWindow();
         $scope.infoWindows = [];
 
-        // $scope.markers = [];
+        $scope.markers = [];
         $scope.bounds = new google.maps.LatLngBounds ();
         $scope.waypoints = [];
         $scope.selectedPlaces = [];
@@ -131,7 +131,7 @@
 
         $scope.search = function() {
            //$scope.placeDetails = [];
-
+           $scope.deleteMarkers();
 
            for (var i = 0; i < $scope.waypoints.length; i++) {
                 if ($scope.removePlaces.indexOf($scope.waypoints[i]) == -1) {
@@ -324,6 +324,7 @@
                 icon: '/assets/yelp.png'
             });
 
+            $scope.markers.push(marker);
             $scope.infoWindows.push(infowindow);
 
 
@@ -380,6 +381,32 @@
             }
 
             return out;
+        }
+
+
+        /* Marker functions */
+
+        // Sets the map on all markers in the array.
+        $scope.setAllMap = function(map) {
+          for (var i = 0; i < $scope.markers.length; i++) {
+            $scope.markers[i].setMap(map);
+          }
+        }
+
+        // Removes the markers from the map, but keeps them in the array.
+        $scope.clearMarkers = function() {
+          $scope.setAllMap(null);
+        }
+
+        // Shows any markers currently in the array.
+        $scope.showMarkers = function() {
+          $scope.setAllMap($scope.map);
+        }
+
+        // Deletes all markers in the array by removing references to them.
+        $scope.deleteMarkers = function() {
+          $scope.clearMarkers();
+          $scope.markers = [];
         }
 
 
