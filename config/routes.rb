@@ -15,6 +15,9 @@ Rails.application.routes.draw do
   # Trip Routing
   resources :trips, only: [:index, :new, :create, :destroy]
   
+  # Session Routing
+  resources :sessions, only: [:new, :create, :destroy]
+
   # API routing 
   scope '/api' do
     resources :itineraries, defaults: {format: :json}
