@@ -5,8 +5,7 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
   # You can have the root of your site routed with "root"
 
-  # Home
-  root 'trips#index'
+  
 
   # User Routing
   post 'users/new' => 'users#create', as: :new_user
@@ -26,6 +25,8 @@ Rails.application.routes.draw do
     resources :accounts, defaults: {format: :json}
   end
 
+  # Home
+  root 'trips#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
