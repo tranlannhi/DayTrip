@@ -6,15 +6,26 @@
     <div class="row">
       <div class="col-md-3">
 
-        <h1 class="logo">Day Tripper</h1>
+
+        <div>
+          <img class="dog" src="/assets/DayTripper_Dog_small.png">
+          <h1 class="logo">Day Tripper</h1>
+        </div>
+
 
         <!--INPUT---FORM-->
         <div class="formwrapper sidebar-scroll">
           <%= form_for @trip do |f| %>
 
 
-          <%= f.text_field :origin, placeholder: "Starting Point", value: Trip.last.origin, class: 'form-control', type: 'text' %><br/>
-          <%= f.text_field :destination, placeholder: "Destination", value: Trip.last.destination, class: 'form-control', type: 'text' %><br/>
+          <%= f.text_field :origin, placeholder: "Starting Point", value: Trip.last.origin, class: 'form-control', type: 'text' %>
+          <div style="line-height:50%;">
+              <br>
+          </div>
+          <%= f.text_field :destination, placeholder: "Destination", value: Trip.last.destination, class: 'form-control', type: 'text' %>
+          <div style="line-height:50%;">
+              <br>
+          </div>
           <% end %>
 
           <form>
@@ -42,30 +53,39 @@
                 <table class="table">
                   <tr>
                     <div>
-                      <ol>
+                      <ul>
                         <!--<li ng-repeat="detail in placeDetails">-->
 
                         <li ng-repeat="detail in placeDetails">
+                          <div class="infobox">
+                                  <div class="name">
+                                      <a href="{{detail.url}}" target="_blank"><h4>{{detail.name}}</h4></a>
+                                  </div>
 
-                          <div class="sidebarinfo">
-                            <a href="{{detail.url}}" target="_blank"><h4>{{detail.name}}</h4></a>
+                                <div class="sidebarinfo">
+                                    <img src="{{detail.rating_img_url}}" style="width:30%; height:30%;"/>
+                                    <h5>{{detail.review_count}} Reviews</h5>
+                                    <h6 style="width:160px;">{{detail.address1}}, {{detail.city}} {{detail.state}}, {{detail.zip}}</h6>
 
+                                    <div role="button" data-toggle="button" class="btn btn-primary add" ng-click="toggleWaypoint(true, detail.id)" style="     max-width: 30%;" >Add to Route
+                                    </div>
+                                </div>
 
-                            <div>
-                              <img src="{{detail.rating_img_url}}" style="float:left;"/>
-                              <h6>{{detail.review_count}} Reviews</h6>
-                            </div>
-                            <img src="{{detail.photo_url}}" style="float:right;"/>
+                                <div class="listimg">
+                                  <img src="{{detail.photo_url}}" style="border-radius:20px; margin-top: -170px; margin-left: 170px; height:30%; width:30%;"/>
+                                </div>
 
                           </div>
-                          <div class="btn btn-default" ng-click="toggleWaypoint(true, detail.id)" style="     max-width: 30%; float:right" >Add
-                          </div>
+
+
+
+
                           <div class="row" />
                         </div>
 
-                      </Link>
+                      </li>
 
-                    </ol>
+                    </ul>
 
                   </div>
                 </tr>
@@ -136,7 +156,9 @@
             </div>
           </div>
         </div>
+        <button class="btn btn-primary bb" ng-click="search()">Get New Route</button>
       </div>
+
 
 
 

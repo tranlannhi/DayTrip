@@ -26,11 +26,8 @@
         $scope.placeDetails = new Array();
         $scope.numPointsAlongRoute = 10;
         $scope.numPlacesPerPoint = 3;
-        //$scope.apiDelay = 1000;
         $scope.placesSearch;
-        //$scope.infowindow = new google.maps.InfoWindow();
         $scope.infoWindows = [];
-
         $scope.markers = [];
         $scope.bounds = new google.maps.LatLngBounds ();
         $scope.waypoints = [];
@@ -139,7 +136,7 @@
                     console.log($scope.waypoints[i]);
                     $scope.savePlaces.push($scope.getPlaceById($scope.waypoints[i]));
                 }
-                
+
             }
 
             console.log("savePlaces");
@@ -248,8 +245,8 @@
                }
             }
 
-          
-          
+
+
         }
 
 
@@ -338,6 +335,8 @@
                 // infowindow.setContent(infowindowcontent);
                 infowindow.open($scope.map, marker);
             });
+
+
 
         }
 

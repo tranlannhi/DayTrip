@@ -32,13 +32,13 @@
 
 .formwrapper {
 width : 348px;
-margin-top: 25px;
+margin-top: 0px;
 position: fixed;
 }
 
 .sidebar-scroll {
-  max-height: 820px;
-  overflow: hidden;
+  max-height: 620px;
+  overflow: auto;
   overflow-y: auto;
 }
 
@@ -70,15 +70,53 @@ position: fixed;
 .logo {
   font-family: "Lobster";
   margin-left: 125px;
+  float: left;
+  margin-top: -65px;
+}
+
+.name {
+
 }
 
 .sidebarinfo {
-float: left;
-max-width: 70%;
-border-bottom: solid;
+
+}
+
+
+.infobox {
+  border-bottom: 2px solid black;
+  height: auto;
+  width: 400px;
+  margin-left: -35px;
+}
+
+.add {
+  padding:10px 50px 10px 20px;
 }
 
 .light-grey {
   color: #909090;
 }
 
+.dog {
+  width: 90px;
+  height: auto;
+  margin-left: 25px;
+  margin-top: 7px;
+}
+
+br {
+   line-height: 50%
+}
+
+ul
+{
+    list-style-type: none;
+}
+
+.bb {
+  margin-top: 630px;
+  margin-left: 75px;
+  padding: 10px 50px 10px 50px;
+  border-radius: 50px;
+}

@@ -1,4 +1,4 @@
-<!-- 
+<!--
 <div class="form animated flipInX">
   <h2>Get Going!</h2>
   <form action="trips/new">
@@ -9,8 +9,16 @@
 </div>
 
  -->
+<div class="title">
+ <p> Day Tripper <p>
+</div>
 
-<div class="form animated flipInX">
+
+<img id="doggie" src="/assets/DayTripper_Dog.png">
+
+<div id="moveform" class="form animated flipInX">
+
+    <h1 class="font">Get In. Get Out. Go.</h1>
  <%= form_for @trip do |f| %>
 
           <%= f.text_field :origin, placeholder: "Starting Point", class: 'form-control', type: 'text' %>
@@ -18,4 +26,6 @@
 
           <%= f.submit %>
           <% end %>
+          <a href="#">Login</a> |
+          <a href="#">Register</a>
 </div>

@@ -1,0 +1,20 @@
+.title {
+  font-family: "Lobster";
+  font-size: 120px;
+  margin-left: 430px;
+  margin-top: 50px;
+}
+
+.font {
+  font-family: "Lobster";
+}
+
+#doggie {
+  width: 30%;
+  height: 30%;
+  margin-left: 120px;
+}
+
+#moveform {
+  width: 500px;
+}
