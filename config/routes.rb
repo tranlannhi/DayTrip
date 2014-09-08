@@ -7,7 +7,6 @@ Rails.application.routes.draw do
 
   # Home
   root 'trips#index'
-  get 'trips/index' => 'trips#index'
 
   # User Routing
   post 'users/new' => 'users#create', as: :new_user
