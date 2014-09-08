@@ -6,6 +6,8 @@
     <div class="row">
       <div class="col-md-3">
 
+        <h1 class="logo">Day Tripper</h1>
+
         <!--INPUT---FORM-->
         <div class="formwrapper sidebar-scroll">
           <%= form_for @trip do |f| %>
@@ -19,37 +21,45 @@
             <div class="input-group">
              <input id="searchbar" placeholder="Search for tacos, shopping, attactions, etc..."class="form-control" type="text" ng-model="placesSearch" />
              <div class="input-group-btn">
-             <button class="btn btn-primary searchbutton" type="submit" ng-click="search()"/><i class="glyphicon glyphicon-search"></i></button>
-           </div>
+               <button class="btn btn-primary searchbutton" type="submit" ng-click="search()"/><i class="glyphicon glyphicon-search"></i></button>
+             </div>
            </div>
          </form>
 
-        <%# Places Link %>
+         <%# Places Link %>
 
-        <div class="panel panel-default">
-          <div class="panel-heading">
+
+
+          <div class="panel panel-default">
+            <div class="panel-heading" id="first-panel">
               <h4 class="panel-title">
-                  <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><span class="glyphicon glyphicon-cutlery">
-                  </span>Local Places</a>
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><span class="glyphicon glyphicon-cutlery">
+                </span>Local Places <span style="float:right;" class="glyphicon glyphicon-chevron-right light-grey" id="first-panel-span"</span></a>
               </h4>
-          </div>
-          <div id="collapseOne" class="panel-collapse in collapse panel-scroll">
-            <div class="panel-body">
-              <table class="table">
-                <tr>
-                  <div>
-                    <ol>
-                      <!--<li ng-repeat="detail in placeDetails">-->
+            </div>
+            <div id="collapseOne" class="panel-collapse in collapse panel-scroll">
+              <div class="panel-body">
+                <table class="table">
+                  <tr>
+                    <div>
+                      <ol>
+                        <!--<li ng-repeat="detail in placeDetails">-->
 
-                      <li ng-repeat="detail in placeDetails">
-                       
-                        <div style="float: left; max-width: 70%">
-                          <h5>{{detail.name}}</h5>
-                          <h6>{{detail.address1}}, {{detail.city}} {{detail.state}}, {{detail.zip}}</h6>
-                          <img src="{{detail.rating_img_url}}"/>
-                        </div>  
-                        <div class="btn btn-default" ng-click="toggleWaypoint(true, detail.id)" style="     max-width: 30%; float:right">Add
-                        </div> 
+                        <li ng-repeat="detail in placeDetails">
+
+                          <div class="sidebarinfo">
+                            <a href="{{detail.url}}" target="_blank"><h4>{{detail.name}}</h4></a>
+
+
+                            <div>
+                              <img src="{{detail.rating_img_url}}" style="float:left;"/>
+                              <h6>{{detail.review_count}} Reviews</h6>
+                            </div>
+                            <img src="{{detail.photo_url}}" style="float:right;"/>
+
+                          </div>
+                          <div class="btn btn-default" ng-click="toggleWaypoint(true, detail.id)" style="     max-width: 30%; float:right" >Add
+                          </div>
                           <div class="row" />
                         </div>
 
@@ -69,18 +79,18 @@
         <%# Directions Link %>
 
         <div class="panel panel-default">
-          <div class="panel-heading">
+          <div class="panel-heading" id="second-panel">
             <h4 class="panel-title">
               <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"><span class="glyphicon glyphicon-road">
-              </span>Direction</a>
+              </span>Direction <span style="float:right;" class="glyphicon glyphicon-chevron-down light-grey" id="second-panel-span"</span></a>
             </h4>
           </div>
           <div id="collapseTwo" class="panel-collapse collapse panel-scroll">
             <div class="panel-body">
               <table class="table">
-                  <tr>
-                      <div id="directions"></div>
-                  </tr>
+                <tr>
+                  <div id="directions"></div>
+                </tr>
               </table>
 
             </div>
@@ -91,47 +101,53 @@
         <%# Saved Places %>
 
 
-         <div class="panel panel-default">
-            <div class="panel-heading">
-                <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree"><span class="glyphicon glyphicon-heart">
-                    </span>Saved Places</a>
-                </h4>
+        <div class="panel panel-default">
+          <div class="panel-heading" id="third-panel">
+            <h4 class="panel-title">
+              <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+                <span class="glyphicon glyphicon-heart">
+                </span>Saved Places
+                <span style="float:right;" class="glyphicon glyphicon-chevron-down light-grey" id="third-panel-span"></span>
+              </a>
+            </h4>
+          </div>
+          <div id="collapseThree" class="panel-collapse collapse panel-scroll">
+            <div class="panel-body">
+              <table class="table">
+                <tr>
+                  <div>
+                    <ol>
+
+
+                      <li ng-repeat="detail in savePlaces" >
+                        <div style="float: left; max-width: 70%">
+                          <h5>{{detail[0].name}}</h5>
+                          <h6>{{detail[0].address1}}, {{detail[0].city}} {{detail[0].state}}, {{detail[0].zip}}</h6></div>
+                          <div class="btn btn-default" ng-click="removeFromPlaces(detail[0].id)" style=" max-width: 30%; float:right"> Remove</div>
+                          <div class="row" />
+                        </li>
+
+
+                      </ol>
+                    </div>
+                  </tr>
+                </table>
+              </div>
             </div>
-            <div id="collapseThree" class="panel-collapse collapse panel-scroll">
-                <div class="panel-body">
-                    <table class="table">
-                        <tr>
-                          <div>
-                            <ol>
-                                       
-
-                              <li ng-repeat="detail in savePlaces" >
-                                    <div style="float: left; max-width: 70%">
-                                    <h5>{{detail[0].name}}</h5>
-                                    <h6>{{detail[0].address1}}, {{detail[0].city}} {{detail[0].state}}, {{detail[0].zip}}</h6></div> 
-                                    <div class="btn btn-default" ng-click="removeFromPlaces(detail[0].id)" style=" max-width: 30%; float:right"> Remove</div> 
-                                    <div class="row" />
-                               </li>
-
-
-                            </ol>
-                          </div>
-                        </tr>
-                    </table>
-                  </div>
-                </div>
-             </div>
-
+          </div>
         </div>
       </div>
-      <div class= "map_container">
-        <div id="map_canvas"></div>
-      </div>
 
+
+
+
+    <div class= "map_container">
+      <div id="map_canvas"></div>
     </div>
 
   </div>
+
+</div>
 
 
 </div>
