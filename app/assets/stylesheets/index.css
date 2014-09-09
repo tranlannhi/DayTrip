@@ -10,9 +10,13 @@
 }
 
 #doggie {
-  width: 30%;
-  height: 30%;
+  width: 500px;
+  height: 469px;
   margin-left: 120px;
+  background-image: url("DayTripper_Dog.png");
+  background-repeat: no-repeat;
+  background-size: 90%;
+
 }
 
 #moveform {
