@@ -54,9 +54,9 @@ end
 # Bootstraping (next 2 gems)
 gem 'bootstrap-sass'
 
-group :production do
-  gem 'rails_12factor'
-end
+
+gem 'rails_12factor'
+
 
 
 # Use ActiveModel has_secure_password
