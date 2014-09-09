@@ -15,7 +15,7 @@
 //= require turbolinks
 //= require_tree .
 //= require bootstrap
-// require bootstrap.min
+
 
     function dayTripper($scope, $http, $route, $timeout) {
 
