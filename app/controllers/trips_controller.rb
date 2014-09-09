@@ -1,7 +1,7 @@
 class TripsController < ApplicationController
 
 	def create
-    @trip = Trip.new(params.require(:trips).permit(:origin, :destination, :searchString, :id))
+    @trip = Trip.new(params.require(:trip).permit(:origin, :destination, :searchString, :id))
 	  	if @trip.save
 		  	redirect_to new_trip_path
 		  	puts Trip.last
@@ -12,7 +12,7 @@ class TripsController < ApplicationController
 
   def index
   	@trips = Trip.all
-	  @trip = Trip.new
+	  # @trip = Trip.new
 	end
 
 	def new
