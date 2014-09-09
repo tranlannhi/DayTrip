@@ -12,7 +12,7 @@ class TripsController < ApplicationController
 
   def index
   	# @trips = Trip.all
-	  # @trip = Trip.new(params.require(:trip).permit(:origin, :destination, :searchString, :waypoints))
+	  @trip = Trip.new
 	end
 
 	def new
