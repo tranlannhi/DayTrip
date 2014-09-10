@@ -417,6 +417,7 @@
 
         //google.maps.event.addDomListener(window, 'load', initialize);
     }
+    dayTripper.$inject = ['$scope', '$http', '$route', '$timeout'];
 
 
 
