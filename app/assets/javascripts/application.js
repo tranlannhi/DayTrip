@@ -418,7 +418,7 @@
         //google.maps.event.addDomListener(window, 'load', initialize);
     }
 
-    RemindersCtrl.$inject = ['$scope', '$http', '$route', '$timeout'];
+    dayTripper.$inject = ['$scope', '$http', '$route', '$timeout'];
 
 
 
