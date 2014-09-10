@@ -419,6 +419,7 @@
     }
 
     dayTripper.$inject = ['$scope', '$http', '$route', '$timeout'];
+    controller('dayTripper', dayTripper);
 
 
 
