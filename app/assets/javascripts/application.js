@@ -35,11 +35,7 @@
         $scope.latlongArr = [];
         $scope.savePlaces = [];
         $scope.removePlaces = [];
-        /*
-        google.maps.event.addListener(directionsDisplay, 'directions_changed', function() {
-
-          });
-        */
+        
 
 
 
